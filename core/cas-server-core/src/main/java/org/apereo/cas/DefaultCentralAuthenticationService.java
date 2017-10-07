@@ -232,9 +232,7 @@ public class DefaultCentralAuthenticationService extends AbstractCentralAuthenti
         }
 
         final RegisteredService registeredService = this.servicesManager.findServiceBy(serviceTicket.getService());
-
-        RegisteredServiceAccessStrategyUtils
-                .ensurePrincipalAccessIsAllowedForService(serviceTicket, authenticationResult, registeredService);
+        RegisteredServiceAccessStrategyUtils.ensurePrincipalAccessIsAllowedForService(serviceTicket, authenticationResult, registeredService);
 
         if (!registeredService.getProxyPolicy().isAllowedToProxy()) {
             LOGGER.warn("ServiceManagement: Service [{}] attempted to proxy, but is not allowed.", serviceTicket.getService().getId());
@@ -327,7 +325,7 @@ public class DefaultCentralAuthenticationService extends AbstractCentralAuthenti
                     finalAuthentication, false);
 
             AuthenticationCredentialsLocalBinder.bindCurrent(finalAuthentication);
-            
+
             final Assertion assertion = new DefaultAssertionBuilder(finalAuthentication)
                     .with(selectedService)
                     .with(serviceTicket.getGrantingTicket().getChainedAuthentications())

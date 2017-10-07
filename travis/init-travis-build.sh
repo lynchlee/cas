@@ -19,21 +19,21 @@ else
   #echo -e "GH_TOKEN -> ${GH_TOKEN}"
 fi
 
-echo -e "Setting build environment...\n"
-sudo mkdir -p /etc/cas/config /etc/cas/saml /etc/cas/services
+# echo -e "Setting build environment...\n"
+# sudo mkdir -p /etc/cas/config /etc/cas/saml /etc/cas/services
 
-echo -e "Configuring Oracle JDK8 JCE...\n"
-sudo unzip -j -o ./etc/jce8.zip *.jar -d $JAVA_HOME/jre/lib/security
-sudo ls $JAVA_HOME/jre/lib/security
-sudo cp ./etc/java.security $JAVA_HOME/jre/lib/security
+#echo -e "Configuring Oracle JDK8 JCE...\n"
+#unzip -j -o ./etc/jce8.zip *.jar -d $JAVA_HOME/jre/lib/security
+## sudo ls $JAVA_HOME/jre/lib/security
+#cp ./etc/java.security $JAVA_HOME/jre/lib/security
 
 echo -e "Configuring Gradle wrapper...\n"
-chmod -R 777 ./gradlew
+chmod -R 777 ./gradlew --version
 
 echo -e "Installing NPM...\n"
-sudo curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-sudo apt-get update
-sudo apt-get install -y nodejs
-sudo ./gradlew npmInstall --stacktrace -q
+# sudo curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+# sudo apt-get -qq update
+# sudo apt-get -qq install -y nodejs
+./gradlew npmInstall --stacktrace -q --configure-on-demand
 
 echo -e "Configured build environment\n"
