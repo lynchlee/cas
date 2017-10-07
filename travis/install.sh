@@ -5,5 +5,5 @@ if [ "$PUBLISH_SNAPSHOTS" == "false" ]; then
   sudo ./gradlew checkstyleMain bootRepackage --parallel -x test -x javadoc --stacktrace --build-cache --max-workers=8
 else
   echo -e "Travis CI build indicates that tests should not run since we are publishing snapshots.\n"
-  sudo ./gradlew javadoc bootRepackage --parallel -x test --stacktrace --build-cache -x check --max-workers=8
+  sudo ./gradlew javadoc bootRepackage install --parallel -x test --stacktrace --build-cache -x check --max-workers=8
 fi
